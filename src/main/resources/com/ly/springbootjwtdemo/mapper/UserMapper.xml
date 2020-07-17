@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ly.springbootjwtdemo.mapper.UserMapper">
-    <select id="listAllUsers" resultType="User">
+    <select id="listAllUsers" resultType="com.ly.springbootjwtdemo.entity.User">
       select * from user
+    </select>
+
+    <select id="getByUsername" resultType="com.ly.springbootjwtdemo.entity.User">
+      SELECT * FROM user
+      where
+      username=#{username}
+    </select>
+
+    <select id="getById" resultType="com.ly.springbootjwtdemo.entity.User">
+        SELECT * FROM user
+      where
+      id=#{id}
     </select>
 </mapper>

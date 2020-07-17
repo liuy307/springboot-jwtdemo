@@ -5,4 +5,8 @@ import java.util.List;
 
 public interface UserService {
     List<User> list();
+
+    User getByUsername(User user);
+
+    User getById(String id);
 }
