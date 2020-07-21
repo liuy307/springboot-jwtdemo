@@ -31,8 +31,8 @@ class SpringbootJwtdemoApplicationTests {
         User user2 = userService.getByUsername(user1);
         tokenServiceImpl.getToken(result.get(0));
 
-        userController.login(user1);
-        userController.login(user2);
+//        userController.login(user1);
+//        userController.login(user2);
     }
 
 }

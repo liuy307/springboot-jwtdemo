@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -21,6 +22,7 @@ public class UserController {
     @Autowired
     TokenServiceImpl tokenServiceImpl;
 
+    @UserLoginToken
     @RequestMapping("/index")
     public List<User> sayHello() {
         List<User> users = userService.list();
@@ -28,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Object login( User user){
+    public Object login( User user, HttpServletRequest httpServletRequest){
         JSONObject jsonObject=new JSONObject();
         User userForBase=userService.getByUsername(user);
         if(userForBase==null){
@@ -39,6 +41,7 @@ public class UserController {
                 jsonObject.put("message","登录失败,密码错误");
                 return jsonObject;
             }else {
+                httpServletRequest.getSession().setAttribute("username", "ok");//简单session
                 String token = tokenServiceImpl.getToken(userForBase);
                 jsonObject.put("token", token);
                 jsonObject.put("user", userForBase);
@@ -47,7 +50,7 @@ public class UserController {
         }
     }
 
-    @UserLoginToken
+//    @UserLoginToken
     @GetMapping("/getMessage")
     public String getMessage(){
         return "你已通过验证";

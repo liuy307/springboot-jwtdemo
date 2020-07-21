@@ -1,3 +1,5 @@
+package com.ly.springbootjwtdemo.config;
+
 import com.ly.springbootjwtdemo.interceptor.AuthenticationInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
